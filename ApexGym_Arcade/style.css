@@ -1,0 +1,113 @@
+:root {
+    --color-ground: #39FF14; /* Neon Green Ground */
+    --color-bg: #1A1A1A;
+    --color-bodybuilder: #FFC107; /* Gold/Bronze skin tone */
+    --color-dumbell-metal: #505050; /* Dark metal color */
+    --color-dumbell-weights: #FF5252; /* Red weights */
+    --color-shadow: rgba(0, 0, 0, 0.4);
+}
+
+body {
+    background-color: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Consolas', monospace;
+    color: white;
+    overflow: hidden; /* Hide anything outside the game box */
+}
+
+#game-container {
+    width: 600px;
+    height: 200px;
+    border: 5px solid var(--color-ground);
+    overflow: hidden;
+    position: relative;
+    background-color: #2b2b2b;
+    box-shadow: 0 0 15px var(--color-ground);
+}
+
+#ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10px;
+    background-color: var(--color-ground);
+}
+
+/* --- THE RUNNER (BODYBUILDER) --- */
+#runner {
+    position: absolute;
+    bottom: 10px; /* Sits on the ground line */
+    left: 20px;
+    width: 30px;
+    height: 40px;
+    
+    /* Creating a more athletic shape using gradients/borders */
+    background: linear-gradient(to top, #444, #666); /* Dark athletic gear */
+    border: 3px solid var(--color-bodybuilder); /* Highlighted muscular outline */
+    border-radius: 5px; 
+    box-shadow: 2px 2px 5px var(--color-shadow);
+}
+
+/* JUMP ANIMATION CLASS (Managed by JavaScript) */
+.jump {
+    animation: jump-animation 0.5s ease-out;
+}
+
+@keyframes jump-animation {
+    0% { bottom: 10px; }
+    50% { bottom: 100px; } /* Max jump height */
+    100% { bottom: 10px; }
+}
+
+/* --- THE OBSTACLE (DUMBBELL) --- */
+#obstacles {
+    position: absolute;
+    bottom: 10px; /* Sits on the ground line */
+    right: -50px; /* Start 50px off-screen */
+    width: 50px; /* Wider to look like a dumbbell */
+    height: 20px;
+    
+    /* Creating a dumbbell shape */
+    background: linear-gradient(to right, var(--color-dumbell-weights) 0%, var(--color-dumbell-weights) 10px, 
+                                          var(--color-dumbell-metal) 10px, var(--color-dumbell-metal) 40px, 
+                                          var(--color-dumbell-weights) 40%, var(--color-dumbell-weights) 100%);
+    border-radius: 5px;
+    box-shadow: 0 4px 6px var(--color-shadow);
+}
+
+/* OBSTACLE ANIMATION CLASS (Managed by JavaScript) */
+.obstacle-move {
+    animation: move-obstacle 1.5s linear infinite;
+}
+
+@keyframes move-obstacle {
+    0% { right: -50px; } 
+    100% { right: 600px; } /* Moves across the full 600px screen width */
+}
+
+/* --- HUD AND MESSAGES --- */
+#score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    color: var(--color-ground);
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+}
+
+#message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--color-ground);
+    color: var(--color-ground);
+    z-index: 10;
+}

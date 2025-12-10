@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eric – Fitness & Workout Page</title>
+  <style>
+    /* General Body & Fonts */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f3f7ff;
+      color: #0f172a;
+      margin: 0;
+      line-height: 1.6;
+      padding-top: 70px; /* for fixed nav */
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(to right, #0d6efd, #3a8dff);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      box-shadow: 0 6px 20px rgba(16,24,40,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    /* Sections */
+    .section {
+      background-color: #ffffff;
+      margin: 30px auto;
+      padding: 25px 20px;
+      border-radius: 12px;
+      max-width: 900px;
+      box-shadow: 0 4px 15px rgba(16,24,40,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(16,24,40,0.15);
+    }
+
+    h2 {
+      color: #0d6efd;
+      border-bottom: 2px solid #0d6efd;
+      padding-bottom: 6px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    /* Images */
+    img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 12px;
+      margin-top: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Buttons */
+    button {
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Workout Generator */
+    .generator { margin-top: 15px; }
+    .result {
+      font-weight: bold;
+      color: #0d3b99;
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+
+    /* Iframes */
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 15px;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    iframe:hover {
+      transform: scale(1.02);
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      z-index: 1000;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0d6efd;
+      font-weight: bold;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #003f7f;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="../startbootstrap-resume-gh-pages/index.html">Resume</a>
+    <a href="ApexGym_Arcade/index.html" target="_blank">Game</a>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>Eric Sumsion — Fitness & Workout Page</h1>
+    <p>Welcome! Check workouts, creatine info, videos, and fitness dashboards.</p>
+  </header>
+
+  <!-- Tableau / Dashboard Section -->
+  <section class="section" id="tableau">
+    <h2>Activity & Fitness Stats</h2>
+    <iframe src="https://public.tableau.com/views/FitabaseFitnessdataDashboard/Dashboard1?:showVizHome=no&:embed=true"></iframe>
+  </section>
+
+  <!-- Creatine Section -->
+  <section class="section" id="creatine">
+    <h2>Creatine Essentials</h2>
+    <p>Creatine boosts strength, recovery, and energy for workouts.</p>
+    <ol>
+      <li>Increased strength & power</li>
+      <li>Faster recovery between workouts</li>
+      <li>Support for lean muscle mass</li>
+    </ol>
+    <img src="https://m.media-amazon.com/images/I/71L-lpp46XL._AC_UF1000,1000_QL80_.jpg" alt="Creatine supplement">
+  </section>
+
+  <!-- Workout Generator -->
+  <section class="section" id="workouts">
+    <h2>Workout Generator</h2>
+    <p>Click below to get a short random workout session with reps!</p>
+    <div class="generator">
+      <button id="generate">Generate Workout</button>
+      <div id="result" class="result"></div>
+    </div>
+  </section>
+
+  <!-- YouTube Video -->
+  <section class="section" id="video">
+    <h2>Training Video</h2>
+    <iframe src="https://www.youtube.com/embed/2tM1LFFxeKg" title="Workout Video" allowfullscreen></iframe>
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    const workouts = [
+      { name: "Push-ups", url: "https://www.google.com/search?q=push-ups+exercise" },
+      { name: "Squats", url: "https://www.google.com/search?q=squats+exercise" },
+      { name: "Sit-ups", url: "https://www.google.com/search?q=sit-ups+exercise" },
+      { name: "Jumping Jacks", url: "https://www.google.com/search?q=jumping+jacks+exercise" },
+      { name: "Burpees", url: "https://www.google.com/search?q=burpees+exercise" },
+      { name: "Lunges", url: "https://www.google.com/search?q=lunges+exercise" },
+      { name: "Pull-ups", url: "https://www.google.com/search?q=pull-ups+exercise" },
+      { name: "Mountain Climbers", url: "https://www.google.com/search?q=mountain+climbers+exercise" },
+      { name: "Plank Shoulder Taps", url: "https://www.google.com/search?q=plank+shoulder+taps+exercise" },
+      { name: "Dumbbell Curls", url: "https://www.google.com/search?q=dumbbell+curls+exercise" },
+      { name: "Bodyweight Squats", url: "https://www.google.com/search?q=bodyweight+squats+exercise" },
+      { name: "Plank", url: "https://www.google.com/search?q=plank+exercise" }
+    ];
+
+    const repsOptions = [
+      "10 reps", "12 reps", "15 reps", "20 reps", "30 seconds", "45 seconds", "1 min"
+    ];
+
+    document.getElementById("generate").addEventListener("click", () => {
+      const selected = [];
+      while(selected.length < 3) { // generate 3 exercises
+        const w = workouts[Math.floor(Math.random() * workouts.length)];
+        if(!selected.includes(w)) selected.push(w);
+      }
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+      selected.forEach(w => {
+        const reps = repsOptions[Math.floor(Math.random() * repsOptions.length)];
+        const p = document.createElement("p");
+        p.innerHTML = `${w.name} — ${reps} — <a href="${w.url}" target="_blank">Example</a>`;
+        resultDiv.appendChild(p);
+      });
+    });
+  </script>
+
+</body>
+</html>
